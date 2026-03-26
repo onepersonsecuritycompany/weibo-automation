@@ -1,46 +1,54 @@
-# Weibo Automation Skill
+# 微博自动化技能
 
-A powerful skill for automating Weibo (微博) operations, including posting tweets and retrieving hot search trends.
+> **Weibo Automation Skill** - Automate Weibo operations with natural language
 
-[中文文档](./README_CN.md)
+一个强大的微博自动化操作技能，支持发微博、获取热搜、趋势分析和自动评论。
 
-## Features
+**[English Documentation](./README_EN.md)** | 中文文档
 
-- **Post Weibo**: Post text and images to Weibo automatically
-- **Hot Search**: Retrieve real-time trending topics from Weibo
-- **Trend Analysis**: Analyze hot search data with intelligent insights
-- **Auto Comment**: Generate and post comments based on trending topics
+---
 
-## Installation
+## ✨ 功能特性
 
-### Quick Install (One-Line Command)
+| 功能 | 说明 |
+|------|------|
+| 📤 发布微博 | 自动发布文字和图片微博 |
+| 🔥 热搜获取 | 实时获取微博热搜榜单 |
+| 📊 趋势分析 | 智能分析热搜数据 |
+| 💬 自动评论 | 基于热搜生成并发布评论 |
 
-**macOS / Linux (Bash):**
+---
+
+## 📦 安装
+
+### 快速安装（一键命令）
+
+**macOS / Linux:**
 ```bash
-# Auto-detect agent and install
+# 自动检测 Agent 并安装
 curl -fsSL https://raw.githubusercontent.com/onepersonsecuritycompany/weibo-automation/main/install.sh | bash
 
-# Or specify agent: claude, openclaw, codex, opencode, trae, qoder
+# 或指定 Agent: claude, openclaw, codex, opencode, trae, qoder
 curl -fsSL https://raw.githubusercontent.com/onepersonsecuritycompany/weibo-automation/main/install.sh | bash -s -- claude
 ```
 
 **Windows (PowerShell):**
 ```powershell
-# Run installer (auto-detect agent)
+# 运行安装脚本（自动检测 Agent）
 Invoke-Expression (Invoke-WebRequest -Uri "https://raw.githubusercontent.com/onepersonsecuritycompany/weibo-automation/main/install.ps1" -UseBasicParsing).Content
 ```
 
-### Manual Install
+### 手动安装
 
-**Step 1:** Clone the repository
+**步骤 1:** 克隆仓库
 ```bash
 git clone https://github.com/onepersonsecuritycompany/weibo-automation.git
 ```
 
-**Step 2:** Copy skill folder to your agent's config directory
+**步骤 2:** 复制 skill 文件夹到 Agent 配置目录
 
-| Agent | Config Directory |
-|-------|------------------|
+| Agent | 配置目录 |
+|-------|----------|
 | Claude Code | `~/.claude/skills/weibo-automation/` |
 | OpenClaw | `~/.openclaw/skills/weibo-automation/` |
 | Codex | `~/.codex/skills/weibo-automation/` |
@@ -49,125 +57,142 @@ git clone https://github.com/onepersonsecuritycompany/weibo-automation.git
 | Qoder | `~/.qoder/skills/weibo-automation/` |
 
 ```bash
-# macOS / Linux example
+# macOS / Linux
 cp -r weibo-automation/skills/weibo-automation ~/.claude/skills/
 ```
 
 ```powershell
-# Windows example
+# Windows
 Copy-Item -Recurse -Path ".\weibo-automation\skills\weibo-automation" -Destination "$env:USERPROFILE\.claude\skills\weibo-automation"
 ```
 
-### Requirements
+### 依赖要求
 
 - Python 3.8+
-- `requests` library: `pip install requests`
+- `requests` 库：`pip install requests`
 
-## Authentication Setup
+---
 
-### Method 1: Environment Variables (Recommended)
+## 🔐 认证配置
+
+### 方法一：环境变量（推荐）
 
 **macOS / Linux:**
 ```bash
-export WEIBO_SUBP="your_subp_cookie_value"
-export WEIBO_SUB="your_sub_cookie_value"
+export WEIBO_SUBP="你的SUBP值"
+export WEIBO_SUB="你的SUB值"
 ```
 
 **Windows (PowerShell):**
 ```powershell
-$env:WEIBO_SUBP="your_subp_cookie_value"
-$env:WEIBO_SUB="your_sub_cookie_value"
+$env:WEIBO_SUBP="你的SUBP值"
+$env:WEIBO_SUB="你的SUB值"
 ```
 
-### Method 2: Cookie File
+### 方法二：配置文件
 
-Create `~/.weibo_cookies.json`:
+创建 `~/.weibo_cookies.json` 文件：
 
 ```json
 {
-  "SUBP": "your_subp_cookie_value",
-  "SUB": "your_sub_cookie_value"
+  "SUBP": "你的SUBP值",
+  "SUB": "你的SUB值"
 }
 ```
 
-### How to Get Cookies
+### 如何获取 Cookie
 
-1. Log into [weibo.com](https://weibo.com) in Chrome
-2. Open DevTools (F12) → Application → Cookies
-3. Find `weibo.com` domain
-4. Copy `SUBP` and `SUB` values
+1. 在 Chrome 浏览器登录 [weibo.com](https://weibo.com)
+2. 打开开发者工具 (F12) → Application → Cookies
+3. 找到 `weibo.com` 域名
+4. 复制 `SUBP` 和 `SUB` 的值
 
-## Usage
+---
 
-After installation, simply use natural language with your agent. The skill will be triggered automatically.
+## 🚀 使用方法
 
-### Trigger Keywords
+安装完成后，直接用自然语言与 Agent 对话即可，技能会自动触发。
 
-| Action | Trigger Phrases |
-|--------|-----------------|
-| Post Weibo | "post to Weibo", "发微博", "publish a Weibo" |
-| Get Hot Search | "get hot search", "热搜", "trending topics", "微博热搜" |
-| Analyze Trends | "analyze Weibo trends", "analyze hot search" |
+### 触发关键词
 
-### Examples
+| 操作 | 中文触发词 | English Triggers |
+|------|-----------|------------------|
+| 发布微博 | 发微博、发布一条微博 | post to Weibo, publish a Weibo |
+| 获取热搜 | 热搜、微博热搜、热搜榜 | hot search, trending topics |
+| 分析趋势 | 分析热搜、热搜趋势 | analyze hot search, analyze trends |
 
-**Post a Weibo:**
+### 使用示例
+
+**发布微博：**
 ```
+"发微博：今天天气真好"
+"帮我发一条微博，内容是：新功能上线啦 #科技#"
 "Post 'Hello, Weibo!' to Weibo"
-"发一条微博：今天天气真好"
-"帮我发微博，内容是：新功能上线啦 #科技#"
 ```
 
-**Get Hot Search:**
+**获取热搜：**
 ```
-"What's trending on Weibo?"
 "查看微博热搜"
-"Get the top 10 hot search topics"
-"热搜榜前20"
+"热搜榜前10条"
+"微博上有什么热点？"
+"What's trending on Weibo?"
 ```
 
-**Analyze & Comment:**
+**分析与评论：**
 ```
-"Analyze today's Weibo hot search trends"
-"分析微博热搜趋势"
-"Generate a comment based on hot search and post it"
+"分析今天的微博热搜趋势"
+"根据热搜生成一条评论并发布"
+"用幽默风格分析热搜"
 ```
 
-### Comment Styles
+### 评论风格
 
-When generating comments, you can specify a style:
-- `neutral` - Balanced, informative style (default)
-- `humorous` - Fun, casual style
-- `professional` - Data-focused, formal style
-- `simple` - Minimal, clean format
+生成评论时可以指定风格：
 
-Example: "Generate a humorous comment based on hot search"
+| 风格 | 说明 |
+|------|------|
+| `neutral` | 中性、信息丰富风格（默认）|
+| `humorous` | 幽默、轻松风格 |
+| `professional` | 专业、数据导向风格 |
+| `simple` | 简洁、清爽风格 |
 
-## API Reference
+示例: `"用幽默风格根据热搜生成一条评论"`
 
-See [skills/weibo-automation/references/api-reference.md](./skills/weibo-automation/references/api-reference.md) for complete API documentation.
+---
 
-## Error Codes
+## 📖 API 参考
 
-| Code | Meaning | Solution |
-|------|---------|----------|
-| 100001 | Login required | Refresh cookies |
-| 100002 | Session expired | Re-login to Weibo |
-| 100003 | Rate limited | Wait and retry |
+完整 API 文档请参阅 [skills/weibo-automation/references/api-reference.md](./skills/weibo-automation/references/api-reference.md)
 
-## Rate Limits
+---
 
-| Operation | Limit | Window |
-|-----------|-------|--------|
-| Post tweet | 30 | 1 hour |
-| Hot search | 60 | 1 minute |
+## ⚠️ 错误码
 
-## Security Notes
+| 错误码 | 含义 | 解决方案 |
+|--------|------|----------|
+| 100001 | 需要登录 | 刷新 Cookie |
+| 100002 | 登录超时 | 重新登录微博 |
+| 100003 | 操作频繁 | 稍后重试 |
 
-- Never share your cookies publicly
-- Cookies expire periodically - refresh when needed
-- Use environment variables for sensitive data in CI/CD
+---
 
-## License
+## ⏱️ 频率限制
+
+| 操作 | 限制 | 时间窗口 |
+|------|------|----------|
+| 发微博 | 30 次 | 1 小时 |
+| 热搜获取 | 60 次 | 1 分钟 |
+
+---
+
+## 🔒 安全提示
+
+- 切勿公开分享你的 Cookie
+- Cookie 会定期过期，需要及时刷新
+- 在 CI/CD 环境中使用环境变量存储敏感信息
+
+---
+
+## 📄 许可证
 
 MIT License
